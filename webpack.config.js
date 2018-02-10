@@ -1,6 +1,7 @@
 const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: ['./src/js/index.js', './src/styles/main.scss'],
@@ -8,7 +9,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/bundle.js'
     },
-    devtool: 'eval-source-map',
     devServer: {
         contentBase: "dist",
         port: 3001
@@ -39,6 +39,9 @@ module.exports = {
             template: './src/index.html',
             filename: 'index.html'
         }),
-        new ExtractTextPlugin({ filename: 'main.css' })
+        new ExtractTextPlugin({ filename: 'main.css' }),
+        new CopyWebpackPlugin([
+            { from: './src/data.json', to: './data.json' }
+        ])
     ]
 };

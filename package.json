@@ -5,6 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack-dev-server",
+    "build": "webpack",
+    "ghpage": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gustavo Bueno",
@@ -14,6 +16,7 @@
     "@babel/preset-env": "^7.0.0-beta.38",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.0-beta.0",
+    "copy-webpack-plugin": "^4.4.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
     "gh-pages": "^1.1.0",
