@@ -129,7 +129,7 @@ function () {
         accordionHeader.onclick = function () {
           var accordionContent = document.getElementsByClassName('accordion-content')[index]; // bonus section
 
-          if (_this.accordionHeaders.length === index + 1) {
+          if (_this.accordionHeaders.length === index + 1 && !accordionHeader.classList.contains('is-open')) {
             var textElement = accordionContent.getElementsByClassName('accordion-content-text')[0];
             textElement.innerHTML = 'Getting data, please wait...';
             var xhr = new XMLHttpRequest();
@@ -141,7 +141,8 @@ function () {
                   // status 200 is a successful return.
                   console.log(xhr.responseText); // 'This is the returned text.'
 
-                  textElement.innerHTML = "The temperature on ".concat(xhr.responseText.title, " is ").concat(xhr.responseText.consolidated_weather[0].the_temp, "\xBA");
+                  var jsonData = JSON.parse(xhr.responseText);
+                  textElement.innerHTML = "The temperature on ".concat(jsonData.title, " is ").concat(jsonData.temp, "\xBA");
                 }
               } else {
                 console.log('Error: ' + xhr.status); // An error occurred during the request.
@@ -150,7 +151,7 @@ function () {
               }
             };
 
-            xhr.open('GET', 'https://www.metaweather.com/api/location/753692/'); // weather in Barcelona
+            xhr.open('GET', 'data.json'); // weather in Barcelona
 
             xhr.send();
           }
