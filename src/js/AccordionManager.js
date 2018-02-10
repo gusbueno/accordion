@@ -7,7 +7,6 @@ class AccordionManager {
 
     toggleAccordion(accordionHeader, accordionContent) {
         accordionHeader.classList.contains('is-open') ? accordionHeader.classList.remove('is-open') : accordionHeader.classList.add('is-open');
-
         accordionContent.classList.contains('is-open') ? accordionContent.classList.remove('is-open') : accordionContent.classList.add('is-open');
     }
 

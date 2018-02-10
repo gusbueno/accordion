@@ -110,7 +110,6 @@ function () {
 
     this.accordionHeaders = [];
     this.accordionHeaders.push.apply(this.accordionHeaders, document.getElementById(containerName).getElementsByClassName("".concat(containerName, "-header")));
-    console.log(this.accordionHeaders);
     this.addOnclickEventToHeaders();
   }
 
@@ -139,8 +138,6 @@ function () {
                 // readyState 4 means the request is done.
                 if (xhr.status === 200) {
                   // status 200 is a successful return.
-                  console.log(xhr.responseText); // 'This is the returned text.'
-
                   var jsonData = JSON.parse(xhr.responseText);
                   textElement.innerHTML = "The temperature on ".concat(jsonData.title, " is ").concat(jsonData.temp, "\xBA");
                 }
