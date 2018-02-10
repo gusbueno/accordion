@@ -1,0 +1,29 @@
+.main .accordion-header {
+  padding: 10px;
+  background-color: #04549e;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-family: Roboto, Arial;
+  font-weight: bold;
+  font-size: 18px;
+  color: white; }
+  .main .accordion-header:hover {
+    cursor: pointer; }
+  .main .accordion-header.is-open {
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 0 !important; }
+
+.main .accordion-content {
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  background-color: #AEFFD8; }
+  .main .accordion-content.is-open {
+    height: auto;
+    padding: 10px;
+    box-shadow: 0px 3px 3px -1px inset;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 10px; }
+  .main .accordion-content-text {
+    font-family: Roboto, Arial;
+    font-size: 16px; }
