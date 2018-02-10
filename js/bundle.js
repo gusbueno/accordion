@@ -115,14 +115,47 @@ function () {
   }
 
   _createClass(AccordionManager, [{
+    key: "toggleAccordion",
+    value: function toggleAccordion(accordionHeader, accordionContent) {
+      accordionHeader.classList.contains('is-open') ? accordionHeader.classList.remove('is-open') : accordionHeader.classList.add('is-open');
+      accordionContent.classList.contains('is-open') ? accordionContent.classList.remove('is-open') : accordionContent.classList.add('is-open');
+    }
+  }, {
     key: "addOnclickEventToHeaders",
     value: function addOnclickEventToHeaders() {
+      var _this = this;
+
       this.accordionHeaders.forEach(function (accordionHeader, index) {
         accordionHeader.onclick = function () {
-          console.log("click!");
-          accordionHeader.classList.contains('is-open') ? accordionHeader.classList.remove('is-open') : accordionHeader.classList.add('is-open');
-          var accordionContent = document.getElementsByClassName('accordion-content')[index];
-          accordionContent.classList.contains('is-open') ? accordionContent.classList.remove('is-open') : accordionContent.classList.add('is-open');
+          var accordionContent = document.getElementsByClassName('accordion-content')[index]; // bonus section
+
+          if (_this.accordionHeaders.length === index + 1) {
+            var textElement = accordionContent.getElementsByClassName('accordion-content-text')[0];
+            textElement.innerHTML = 'Getting data, please wait...';
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                // readyState 4 means the request is done.
+                if (xhr.status === 200) {
+                  // status 200 is a successful return.
+                  console.log(xhr.responseText); // 'This is the returned text.'
+
+                  textElement.innerHTML = "The temperature on ".concat(xhr.responseText.title, " is ").concat(xhr.responseText.consolidated_weather[0].the_temp, "\xBA");
+                }
+              } else {
+                console.log('Error: ' + xhr.status); // An error occurred during the request.
+
+                textElement.innerHTML = 'Error on getting data...';
+              }
+            };
+
+            xhr.open('GET', 'https://www.metaweather.com/api/location/753692/'); // weather in Barcelona
+
+            xhr.send();
+          }
+
+          _this.toggleAccordion(accordionHeader, accordionContent);
         };
       });
     }
