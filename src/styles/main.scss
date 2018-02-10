@@ -1,0 +1,41 @@
+.main {
+
+  .accordion {
+
+    &-header {
+      padding: 10px;
+      background-color: #04549e;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      font-family: Roboto, Arial;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      &:hover {
+        cursor: pointer;
+      }
+      &.is-open {
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 0 !important;
+      }
+    }
+
+    &-content {
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      background-color: #AEFFD8;
+      &.is-open {
+        height: auto;
+        padding: 10px;
+        box-shadow: 0px 3px 3px -1px inset;
+        border-radius:  0 0 5px 5px;
+        margin-bottom: 10px;
+      }
+      &-text {
+        font-family: Roboto, Arial;
+        font-size: 16px;
+      }
+    }
+  }
+}
