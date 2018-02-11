@@ -114,8 +114,18 @@ function () {
   }
 
   _createClass(AccordionManager, [{
+    key: "closeAllElements",
+    value: function closeAllElements() {
+      this.accordionHeaders.forEach(function (accordionHeader, index) {
+        var accordionContent = document.getElementsByClassName('accordion-content')[index];
+        accordionHeader.classList.remove('is-open');
+        accordionContent.classList.remove('is-open');
+      });
+    }
+  }, {
     key: "toggleAccordion",
     value: function toggleAccordion(accordionHeader, accordionContent) {
+      this.closeAllElements();
       accordionHeader.classList.contains('is-open') ? accordionHeader.classList.remove('is-open') : accordionHeader.classList.add('is-open');
       accordionContent.classList.contains('is-open') ? accordionContent.classList.remove('is-open') : accordionContent.classList.add('is-open');
     }
