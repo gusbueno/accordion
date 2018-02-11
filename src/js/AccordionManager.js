@@ -5,7 +5,17 @@ class AccordionManager {
         this.addOnclickEventToHeaders();
     }
 
+    closeAllElements() {
+        this.accordionHeaders.forEach((accordionHeader, index) => {
+            const accordionContent = document.getElementsByClassName('accordion-content')[index];
+            accordionHeader.classList.remove('is-open');
+            accordionContent.classList.remove('is-open')
+        });
+    }
+
+
     toggleAccordion(accordionHeader, accordionContent) {
+        this.closeAllElements();
         accordionHeader.classList.contains('is-open') ? accordionHeader.classList.remove('is-open') : accordionHeader.classList.add('is-open');
         accordionContent.classList.contains('is-open') ? accordionContent.classList.remove('is-open') : accordionContent.classList.add('is-open');
     }
